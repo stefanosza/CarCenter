@@ -347,14 +347,14 @@ public class Customer extends javax.swing.JFrame {
         int selectedRow = tempTable.getSelectedRow();
 
         if (selectedRow == -1) {
-            JOptionPane.showMessageDialog(this, "Please select only one row!");
+            JOptionPane.showMessageDialog(this, "Please select a car!");
             return;
         }
 
         DefaultTableModel model = (DefaultTableModel) tempTable.getModel();
         int id = (int) model.getValueAt(selectedRow, 0);
 
-        int confirm = JOptionPane.showConfirmDialog(this, "Are you sure you want to delete row with ID:" + id + "?", "Delete Confirmation", JOptionPane.YES_NO_OPTION);
+        int confirm = JOptionPane.showConfirmDialog(this, "Are you sure you want to delete car with ID:" + id + "?", "Delete Confirmation", JOptionPane.YES_NO_OPTION);
 
         if (confirm != JOptionPane.YES_OPTION) {
             return;

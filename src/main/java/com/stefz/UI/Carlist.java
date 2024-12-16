@@ -63,8 +63,7 @@ public class Carlist extends javax.swing.JPanel {
     }
 
     private void loadCarDatabase() throws ClassNotFoundException {
-//        DBUtil db=new DBUtil();
-//        String url = "jdbc:sqlite:C:\\Users\\stefz\\Documents\\NetBeansProjects\\CarCenter.db";
+
         String sql = "SELECT ID, BRAND, MODEL, HORSEPOWER, CC, YEAR, TRANSMISSION, TYPE, PRICE, RENTPRICE FROM CARS";
 
         try (Connection conn =db.creareLocalConnection(); Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(sql)) {
@@ -86,7 +85,7 @@ public class Carlist extends javax.swing.JPanel {
                     rs.getInt("RENTPRICE")
 
                 };
-                model.addRow(row); // Προσθήκη της γραμμής στον πίνακα
+                model.addRow(row); 
             }
         } catch (SQLException ex) {
             Logger.getLogger(Carlist.class.getName()).log(Level.SEVERE, null, ex);
@@ -96,63 +95,58 @@ public class Carlist extends javax.swing.JPanel {
 
     private void deleteSelectedRow() {
 
-        int selectedRow = carlistTable.getSelectedRow(); // Λαμβάνει τη γραμμή που έχει επιλεγεί
+        int selectedRow = carlistTable.getSelectedRow(); 
 
         if (selectedRow == -1) {
-            JOptionPane.showMessageDialog(this, "Παρακαλώ επιλέξτε μια γραμμή για διαγραφή.", "Σφάλμα", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Please select a line to delete.", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
-        // Λήψη του ID της επιλεγμένης εγγραφής
         DefaultTableModel model = (DefaultTableModel) carlistTable.getModel();
 
         int id = (int) model.getValueAt(selectedRow, 0);
 
-        int confirm = JOptionPane.showConfirmDialog(this, "Είστε σίγουροι ότι θέλετε να διαγράψετε την εγγραφή με ID: " + id + "?", "Επιβεβαίωση Διαγραφής", JOptionPane.YES_NO_OPTION);
+        int confirm = JOptionPane.showConfirmDialog(this, "Are you sure you want to delete the ID record: " + id + "?", "Confirmation of Deletion", JOptionPane.YES_NO_OPTION);
         if (confirm != JOptionPane.YES_OPTION) {
             return;
         }
-        // SQL για διαγραφή από τη βάση δεδομένων
-//        String url = "jdbc:sqlite:C:\\Users\\stefz\\Documents\\NetBeansProjects\\CarCenter.db";
+        
         String sql = "DELETE FROM CARS WHERE ID = ?";
 
         try (Connection conn =db.creareLocalConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
-            pstmt.setInt(1, id); // Ορισμός της παραμέτρου ID
+            pstmt.setInt(1, id); 
             int rowsAffected = pstmt.executeUpdate();
 
             if (rowsAffected == 1) {
-                model.removeRow(selectedRow); // Αφαίρεση της γραμμής από το JTable
-                JOptionPane.showMessageDialog(this, "Η εγγραφή διαγράφηκε επιτυχώς.", "Επιτυχία", JOptionPane.INFORMATION_MESSAGE);
+                model.removeRow(selectedRow); 
+                JOptionPane.showMessageDialog(this, "The record was successfully deleted.", "Success", JOptionPane.INFORMATION_MESSAGE);
             } else {
-                JOptionPane.showMessageDialog(this, "Δεν βρέθηκε εγγραφή για διαγραφή.", "Σφάλμα", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "No record found for deletion.", "Error", JOptionPane.ERROR_MESSAGE);
             }
 
         } catch (SQLException ex) {
             Logger.getLogger(Carlist.class.getName()).log(Level.SEVERE, null, ex);
-            JOptionPane.showMessageDialog(this, "Σφάλμα κατά τη διαγραφή της εγγραφής.", "Σφάλμα", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Error while deleting the record.", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
 
     private void addToCart() {
 
-        int selectedRow = carlistTable.getSelectedRow(); // Παίρνει την επιλεγμένη γραμμή από τον πίνακα
+        int selectedRow = carlistTable.getSelectedRow(); 
 
         if (selectedRow == -1) {
-            JOptionPane.showMessageDialog(this, "Παρακαλώ επιλέξτε μια γραμμή για προσθήκη στο καλάθι.", "Σφάλμα", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Please select a car to add to the cart.", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
-        // Λήψη των δεδομένων από την επιλεγμένη γραμμή
         DefaultTableModel model = (DefaultTableModel) carlistTable.getModel();
 
-        String brand = (String) model.getValueAt(selectedRow, 1); // Στήλη BRAND
-        String modelName = (String) model.getValueAt(selectedRow, 2); // Στήλη MODEL
-        Integer price = (int) model.getValueAt(selectedRow, 8);// Στήλη PRICE
-        Integer rentPrice = (int) model.getValueAt(selectedRow, 9);// Στήλη RENTPRICE
+        String brand = (String) model.getValueAt(selectedRow, 1); 
+        String modelName = (String) model.getValueAt(selectedRow, 2); 
+        Integer price = (int) model.getValueAt(selectedRow, 8);
+        Integer rentPrice = (int) model.getValueAt(selectedRow, 9);
 
-        // Εισαγωγή στη βάση δεδομένων
-//        String url = "jdbc:sqlite:C:\\Users\\stefz\\Documents\\NetBeansProjects\\CarCenter.db";
         String sql = "INSERT INTO TEMP (BRAND, MODEL, PRICE, RENTPRICE) VALUES (?, ?, ?, ?)";
 
         try (Connection conn =db.creareLocalConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -165,21 +159,20 @@ public class Carlist extends javax.swing.JPanel {
             int rowsInserted = pstmt.executeUpdate();
 
             if (rowsInserted > 0) {
-                JOptionPane.showMessageDialog(this, "Το αυτοκίνητο προστέθηκε στο καλάθι επιτυχώς.", "Επιτυχία", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(this, "The car was successfully added to the cart.", "Succcess", JOptionPane.INFORMATION_MESSAGE);
             } else {
-                JOptionPane.showMessageDialog(this, "Αποτυχία προσθήκης στο καλάθι.", "Σφάλμα", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Failure to add to cart.", "Error", JOptionPane.ERROR_MESSAGE);
             }
 
         } catch (SQLException ex) {
             Logger.getLogger(Carlist.class.getName()).log(Level.SEVERE, null, ex);
-            JOptionPane.showMessageDialog(this, "Σφάλμα κατά την προσθήκη στο καλάθι.", "Σφάλμα", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Error when adding to the cart.", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
 
     public void reloadTable() {
         DefaultTableModel model = (DefaultTableModel) carlistTable.getModel();
         carlistTable.setModel(model);
-//                    model.setRowCount(0);
     }
 
     /**

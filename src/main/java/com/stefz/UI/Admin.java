@@ -486,7 +486,7 @@ public class Admin extends javax.swing.JFrame {
             CarController carcontroller = new CarController();
             carcontroller.addCar(car);
 //            carcontroller.showList();
-            JOptionPane.showMessageDialog(this, "Car added successfully in the car list!");
+            //JOptionPane.showMessageDialog(this, "Car added successfully in the car list!");
 
             String insertQuery = "INSERT INTO CARS (brand, model, horsepower, cc, transmission, year, type, price, rentPrice) " + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
