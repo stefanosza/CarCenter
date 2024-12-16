@@ -25,16 +25,15 @@ import java.awt.EventQueue;
  */
 public class Login extends javax.swing.JFrame {
 
-//        private final String url = "jdbc:sqlite:" +Settings.USER_PATH + "\\CarCenter\\config\\cc.db";
     /**
      * Creates new form Login
      */
     public Login() {
-//        System.out.println(Settings.USER_PATH);
-//        System.out.println(url);
+
         FolderManager fm = new FolderManager();
         fm.createCoreFilesAndDirectories();
         initComponents();
+        
         tfUsername.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "Enter your Username");
         tfUsername.putClientProperty ( FlatClientProperties.STYLE, "" + "showClearButton:true" );
 
@@ -166,24 +165,6 @@ public class Login extends javax.swing.JFrame {
             Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_loginButtonActionPerformed
-
-//        catch (SQLException ex) {
-//            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
-//    
-//        catch (SQLException ex) {
-//            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
-//    
-//        catch (SQLException ex) {
-//            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
-//    
-//        catch (SQLException ex) {
-//            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
-//    
-//        catch (SQLException ex) {
-//            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
-//    
-//        catch (SQLException ex) {
-//            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
 
     private void tfUsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfUsernameActionPerformed
         // TODO add your handling code here:

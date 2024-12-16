@@ -483,10 +483,11 @@ public class Admin extends javax.swing.JFrame {
             Integer rentPrice = Integer.parseInt(rentPriceText);
 
             Car car = new Car(brand, model, horsepower, cc, transmission, year, type, price, rentPrice);
+            
             CarController carcontroller = new CarController();
             carcontroller.addCar(car);
 //            carcontroller.showList();
-            //JOptionPane.showMessageDialog(this, "Car added successfully in the car list!");
+//            JOptionPane.showMessageDialog(this, "Car added successfully in the car list!");
 
             String insertQuery = "INSERT INTO CARS (brand, model, horsepower, cc, transmission, year, type, price, rentPrice) " + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
@@ -514,8 +515,6 @@ public class Admin extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Error inserting data: " + ex.getMessage());
             }
         }
-
-
     }//GEN-LAST:event_loginButtonActionPerformed
 
     private void uc() {
