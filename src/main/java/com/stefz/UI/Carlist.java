@@ -25,11 +25,11 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author stefz
  */
+
 public class Carlist extends javax.swing.JPanel {
+    
     DBUtil db = new DBUtil();
-    /**
-     * Creates new form Carlist
-     */
+    
     public Carlist() {
         initComponents();
         
@@ -72,7 +72,9 @@ public class Carlist extends javax.swing.JPanel {
             model.setRowCount(0);
 
             while (rs.next()) {
+                
                 Object[] row = new Object[]{
+                    
                     rs.getInt("ID"),
                     rs.getString("BRAND"),
                     rs.getString("MODEL"),
@@ -83,7 +85,7 @@ public class Carlist extends javax.swing.JPanel {
                     rs.getString("TYPE"),
                     rs.getInt("PRICE"),
                     rs.getInt("RENTPRICE")
-
+                        
                 };
                 model.addRow(row); 
             }
@@ -171,8 +173,10 @@ public class Carlist extends javax.swing.JPanel {
     }
 
     public void reloadTable() {
+        
         DefaultTableModel model = (DefaultTableModel) carlistTable.getModel();
         carlistTable.setModel(model);
+        
     }
 
     /**
