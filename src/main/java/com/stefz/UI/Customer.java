@@ -350,6 +350,7 @@ public class Customer extends javax.swing.JFrame {
 
     public void discard() {
 
+        
         int selectedRow = tempTable.getSelectedRow();
 
         if (selectedRow == -1) {
