@@ -23,13 +23,11 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author stefz
  */
+
 public class Customer extends javax.swing.JFrame {
 
     DBUtil db = new DBUtil();
 
-    /**
-     * Creates new form Customer
-     */
     public Customer() {
         initComponents();
         tempTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -157,16 +155,23 @@ public class Customer extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(tempTable);
 
-        btnDiscard.setBackground(new java.awt.Color(102, 0, 0));
+        btnDiscard.setBackground(new java.awt.Color(255, 51, 51));
         btnDiscard.setText("DISCARD");
+        btnDiscard.setMaximumSize(new java.awt.Dimension(84, 31));
+        btnDiscard.setMinimumSize(new java.awt.Dimension(84, 31));
+        btnDiscard.setPreferredSize(new java.awt.Dimension(84, 31));
         btnDiscard.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDiscardActionPerformed(evt);
             }
         });
 
-        btnBuy.setBackground(new java.awt.Color(51, 102, 0));
+        btnBuy.setBackground(new java.awt.Color(0, 153, 0));
+        btnBuy.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnBuy.setText("BUY");
+        btnBuy.setMaximumSize(new java.awt.Dimension(84, 31));
+        btnBuy.setMinimumSize(new java.awt.Dimension(84, 31));
+        btnBuy.setPreferredSize(new java.awt.Dimension(84, 31));
         btnBuy.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnBuyMouseClicked(evt);
@@ -178,8 +183,12 @@ public class Customer extends javax.swing.JFrame {
             }
         });
 
-        btnRent.setBackground(new java.awt.Color(0, 51, 255));
+        btnRent.setBackground(new java.awt.Color(0, 88, 145));
+        btnRent.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnRent.setText("RENT");
+        btnRent.setMaximumSize(new java.awt.Dimension(84, 31));
+        btnRent.setMinimumSize(new java.awt.Dimension(84, 31));
+        btnRent.setPreferredSize(new java.awt.Dimension(84, 31));
         btnRent.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRentActionPerformed(evt);
@@ -201,15 +210,12 @@ public class Customer extends javax.swing.JFrame {
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnDiscard, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnRent, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(btnBuy, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnBuy, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnRent, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnDiscard, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -234,7 +240,7 @@ public class Customer extends javax.swing.JFrame {
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 480, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(93, Short.MAX_VALUE))
+                .addContainerGap(92, Short.MAX_VALUE))
         );
 
         jTabbedPane2.addTab("Cart", jPanel4);
@@ -472,7 +478,6 @@ public class Customer extends javax.swing.JFrame {
             try (Connection conn = db.creareLocalConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
                 pstmt.setInt(1, id);
 
-                // Εκτέλεση της εντολής
                 int rowsAffected = pstmt.executeUpdate();
                 if (rowsAffected > 0) {
 

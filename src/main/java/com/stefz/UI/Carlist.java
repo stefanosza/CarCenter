@@ -223,6 +223,7 @@ public class Carlist extends javax.swing.JPanel {
         jScrollPane2.setViewportView(carlistTable);
 
         btnDelete.setBackground(new java.awt.Color(255, 51, 51));
+        btnDelete.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnDelete.setText("DELETE");
         btnDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -231,6 +232,7 @@ public class Carlist extends javax.swing.JPanel {
         });
 
         btnRefresh.setBackground(new java.awt.Color(157, 159, 182));
+        btnRefresh.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnRefresh.setText("REFRESH");
         btnRefresh.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -239,7 +241,7 @@ public class Carlist extends javax.swing.JPanel {
         });
 
         btnCart.setBackground(new java.awt.Color(0, 153, 0));
-        btnCart.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnCart.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnCart.setForeground(new java.awt.Color(255, 255, 255));
         btnCart.setText("ADD TO CART");
         btnCart.addActionListener(new java.awt.event.ActionListener() {
