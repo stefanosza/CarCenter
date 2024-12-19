@@ -20,7 +20,9 @@ import java.sql.Statement;
 public abstract class DBConnection {
     
 
-    private final String url = "jdbc:sqlite:" +Settings.USER_PATH+"\\CarCanter\\config\\cc.db";
+//    private final String url = "jdbc:sqlite:" +Settings.USER_PATH+"\\CarCanter\\config\\cc.db"; 
+    private final String url = "jdbc:sqlite:" +Settings.USER_PATH+"/CarCanter/config/cc.db"; 
+
     private Connection connection;
     
     public DBConnection ()  {  }
